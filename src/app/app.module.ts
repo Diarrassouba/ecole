@@ -9,6 +9,9 @@ import { PersonneComponent } from './personne/personne.component';
 import { EtudiantComponent } from './etudiant/etudiant.component';
 import { AdministrateurComponent } from './administrateur/administrateur.component';
 import { EnseignantComponent } from './enseignant/enseignant.component';
+import {PersonneService} from "./services/personne.service";
+import {AlertModule, ButtonsModule, DatepickerModule, PaginationModule} from "ng2-bootstrap";
+import {DataTableModule} from "primeng/components/datatable/datatable";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,7 @@ import { EnseignantComponent } from './enseignant/enseignant.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PersonneService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
