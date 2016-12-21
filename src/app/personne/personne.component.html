@@ -1,3 +1,25 @@
-<p>
-  personne works!
-</p>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="alert-info" align="center">
+      <h1>
+        {{title}}
+      </h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <md-nav-list>
+      <h3 md-subheader>
+        INVITEES
+      </h3>
+      <md-list-item *ngFor="let p of dataPersonnes">
+        {{p.numCni}} {{p.titre}} {{p.nom}} {{p.prenom}} {{p.adresse.email}}
+      </md-list-item>
+    </md-nav-list>
+    <ul>
+      <li *ngFor="let p of dataPersonnes">{{p.numCni}} {{p.titre}} {{p.nom}} {{p.prenom}} {{p.adresse.email}}</li>
+    </ul>
+  </div>
+
+</div>

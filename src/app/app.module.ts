@@ -12,6 +12,7 @@ import { EnseignantComponent } from './enseignant/enseignant.component';
 import {PersonneService} from "./services/personne.service";
 import {AlertModule, ButtonsModule, DatepickerModule, PaginationModule} from "ng2-bootstrap";
 import {DataTableModule} from "primeng/components/datatable/datatable";
+import { MaterialModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {DataTableModule} from "primeng/components/datatable/datatable";
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule.forRoot()
   ],
   providers: [PersonneService],
   bootstrap: [AppComponent]
