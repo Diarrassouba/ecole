@@ -11,8 +11,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Accueil</a></li>
-        <li><a routerLink="/invites" routerLinkActive="active">Invités</a></li>
+        <li><a href="#">Accueil</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/invites']">Invités</a></li>
         <!--<li><a href="#">Etudiant</a></li>-->
         <!--<li><a href="#">Eseignant</a></li>-->
         <!--<li><a href="#">Administrateur</a></li>-->
@@ -31,3 +31,5 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+
