@@ -7,19 +7,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">ECOLE</a>
+      <a class="navbar-brand" routerLink="#">ECOLE</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a routerLinkActive="#">Accueil</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['/invites']">Invités</a></li>
+        <li><a routerLink="/accueil">Accueil</a></li>
+        <li routerLinkActive="active"><a routerLink="/invites">Invités</a></li>
         <!--<li><a href="#">Etudiant</a></li>-->
         <!--<li><a href="#">Eseignant</a></li>-->
         <!--<li><a href="#">Administrateur</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLinkActive="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a routerLinkActive="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a routerLink="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a routerLink="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
