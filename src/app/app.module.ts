@@ -16,6 +16,7 @@ import {AlertModule, DatepickerModule,} from "ng2-bootstrap";
 import {DataTableModule} from "primeng/components/datatable/datatable";
 import {DialogModule} from "primeng/components/dialog/dialog";
 import { MaterialModule } from '@angular/material';
+import { AccueilComponent } from './accueil/accueil.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MaterialModule } from '@angular/material';
     PersonneComponent,
     EtudiantComponent,
     AdministrateurComponent,
-    EnseignantComponent
+    EnseignantComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
