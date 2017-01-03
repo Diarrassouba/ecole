@@ -1,9 +1,41 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="alert-info" align="center">
-      <h1>
-        {{title}}
-      </h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="alert-info" align="center">
+        <h1>
+          {{title}}
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="container-fluid">
+        <p-dataTable [value]="dataPersonnes" selectionMode="single" [(selection)]="selectedPersonne"
+                     (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5" [pageLinks]="3"
+                     [rowsPerPageOptions]="[5,10,15]" [responsive]="true"
+                     resizableColumns="true">
+          <header>CRUD de invtés</header>
+          <p-column field="id" header="ID" [sortable]="true"></p-column>
+          <p-column field="titre" header="Titre" [sortable]="true"></p-column>
+          <p-column field="numCni" header="NumCni" [sortable]="true"></p-column>
+          <p-column field="nom" header="Nom" [sortable]="true"></p-column>
+          <p-column field="prenom" header="Prenom" [sortable]="true"></p-column>
+          <p-column field="adresse.email" header="Email" [sortable]="true"></p-column>
+          <p-column field="adresse.codePostal" header="Code Postal" [sortable]="true"></p-column>
+          <p-column field="adresse.quartier" header="Quartier" [sortable]="true"></p-column>
+          <footer>
+            <div class="ui-helper-clearfix" style="width:100%">
+              <button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()"
+                      label="Ajouter"></button>
+            </div>
+          </footer>
+        </p-dataTable>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+
     </div>
   </div>
 </div>
@@ -17,9 +49,48 @@
         {{p.numCni}} {{p.titre}} {{p.nom}} {{p.prenom}} {{p.adresse.email}}
       </md-list-item>
     </md-nav-list>
-    <ul>
-      <li *ngFor="let p of dataPersonnes">{{p.numCni}} {{p.titre}} {{p.nom}} {{p.prenom}} {{p.adresse.email}}</li>
-    </ul>
   </div>
 
 </div>
+
+<p-dialog header="Invtés Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="personne">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="id">ID</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="id" [(ngModel)]="personne.id"/></div>
+    </div><div class="ui-grid-row">
+    <div class="ui-grid-col-4"><label for="titre">Titre</label></div>
+    <div class="ui-grid-col-8"><input pInputText id="titre" [(ngModel)]="personne.titre"/></div>
+  </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="numcni">N°CNI</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="numcni" [(ngModel)]="personne.numCni"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="nom">Nom</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="nom" [(ngModel)]="personne.nom"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="prenom">Prenom</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="prenom" [(ngModel)]="personne.prenom"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="email">Email</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="email" [(ngModel)]="personne.adresse.email"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="codePostal">Code</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="codePostal" [(ngModel)]="personne.adresse.codePostal"/></div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4"><label for="quartier">Quartier</label></div>
+      <div class="ui-grid-col-8"><input pInputText id="quartier" [(ngModel)]="personne.adresse.quartier"/></div>
+    </div>
+  </div>
+  <footer>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+      <button type="button" pButton icon="fa-check" (click)="save(personne)" label="save"></button>
+      <button type="button" pButton icon="fa-close" (click)="delete()" label="Supprimer"></button>
+    </div>
+  </footer>
+</p-dialog>

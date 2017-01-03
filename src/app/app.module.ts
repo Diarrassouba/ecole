@@ -10,8 +10,11 @@ import { EtudiantComponent } from './etudiant/etudiant.component';
 import { AdministrateurComponent } from './administrateur/administrateur.component';
 import { EnseignantComponent } from './enseignant/enseignant.component';
 import {PersonneService} from "./services/personne.service";
-import {AlertModule, ButtonsModule, DatepickerModule, PaginationModule} from "ng2-bootstrap";
+import {InputTextModule} from "primeng/components/inputtext/inputtext";
+import {ButtonModule} from "primeng/components/button/button";
+import {AlertModule, DatepickerModule,} from "ng2-bootstrap";
 import {DataTableModule} from "primeng/components/datatable/datatable";
+import {DialogModule} from "primeng/components/dialog/dialog";
 import { MaterialModule } from '@angular/material';
 
 @NgModule({
@@ -27,6 +30,8 @@ import { MaterialModule } from '@angular/material';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    AlertModule,DatepickerModule,
+    DataTableModule,InputTextModule,ButtonModule,DialogModule,
     MaterialModule.forRoot()
   ],
   providers: [PersonneService],
