@@ -46,7 +46,7 @@ export class PersonneComponent implements OnInit {
 
   save(personne) {
     if(this.newPersonne){
-      this.personneService.ajouter(personne).subscribe((data) => this.pers = data,
+      this.personneService.ajouter(personne).subscribe((data) => this.personne = data.body,
         error => console.log(error),
         () => console.log("Enregistrement reussi"));
     }else {
