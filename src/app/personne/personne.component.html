@@ -1,3 +1,6 @@
+<!--<head>-->
+  <!--<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+<!--</head>-->
 <div class="container">
   <a routerLink="/accueil" class="btn btn-danger">Aller à l'accueil</a>
   <div class="row">
@@ -12,6 +15,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="container-fluid">
+        <div class="alert-danger" *ngIf="status!=0 || status2!=0"><h2> {{messages}} {{messages2}}</h2></div>
         <p-dataTable [value]="dataPersonnes" selectionMode="single" [(selection)]="selectedPersonne"
                      (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5" [pageLinks]="3"
                      [rowsPerPageOptions]="[5,10,15]" [responsive]="true"
@@ -90,8 +94,8 @@
   </div>
   <footer>
     <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-      <button type="button" pButton icon="fa-check" (click)="save(personne)" label="save"></button>
       <button type="button" pButton icon="fa-close" (click)="delete()" label="Supprimer"></button>
+      <button type="button" pButton icon="fa-check" (click)="save(personne)" label="save"></button>
     </div>
   </footer>
 </p-dialog>

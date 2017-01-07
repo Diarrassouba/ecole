@@ -12,7 +12,9 @@ import {Adresse} from "../model/adresse";
 })
 export class PersonneComponent implements OnInit {
   title = 'LES INVITES AUTORISEES!';
-  dataPersonnes: Personne[];
+  dataPersonnes: Array<Personne>;
+  status:number;
+  messages:string[];
   displayDialog: boolean;
   // displayDialog2: boolean;
   personne: Personne;
@@ -34,7 +36,7 @@ export class PersonneComponent implements OnInit {
     this.personneService.gerPersonnes()
       .subscribe((data) => this.dataPersonnes = data.body,
         error => console.log(error),
-        () => console.log("getAllPers() bien executé"))
+        () => console.log("getAllPers() bien executé de status"))
   };
 
   showDialogToAdd() {
@@ -45,21 +47,25 @@ export class PersonneComponent implements OnInit {
   }
 
   save(personne) {
+    this.messages=null;
     if(this.newPersonne){
-      this.personneService.ajouter(personne).subscribe((data) => this.personne = data.body,
+      this.personneService.ajouter(personne).subscribe((data) => {this.personne = data.body
+      this.status=data.status;
+      this.messages=data.messages},
         error => console.log(error),
-        () => console.log("Enregistrement reussi"));
+        () => console.log("Enregistrement status:"+this.status+" de message: "+this.messages));
     }else {
       this.personneService.modifier(personne).subscribe(
-        (data) => this.personne = data.body,
+        (data) => {this.personne = data.body
+        this.status=data.status;
+        this.messages=data.messages},
         error => console.log(error),
-        () => console.log("La personne " +personne.id + " a été bien modifier")
+        () => console.log("La personne " +personne.id + " a été bien modifier avec le status "
+          +this.status+" de message: "+this.messages)
       )
     }
 
     this.displayDialog = false;
-    // this.personneService.gerPersonnes()
-    //   .subscribe((data) => this.dataPersonnes = data.body);
     this.getAllsPers();
   }
 
@@ -67,14 +73,14 @@ export class PersonneComponent implements OnInit {
     if (!this.newPersonne){
       let idPe: number = this.selectedPersonne.id;
       this.personneService.delete(idPe).subscribe(
-        (data) => this.suppPersonne = data,
+        (data) => this.suppPersonne = data.body,
         error => console.log(error),
         () => console.log("Personne :" + idPe + "a été bien supprimé"));
+
     }else {
       this.displayDialog = false;
       return;
-    }
-
+  }
 
     this.getAllsPers();
     this.displayDialog = false;
