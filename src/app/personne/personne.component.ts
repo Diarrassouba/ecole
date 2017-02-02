@@ -49,24 +49,27 @@ export class PersonneComponent implements OnInit {
   save(personne) {
     this.messages=null;
     if(this.newPersonne){
-      this.personneService.ajouter(personne).subscribe((data) => {this.personne = data.body
+      this.personneService.ajouter(personne).subscribe(
+        (data) => {this.personne = data.body;
       this.status=data.status;
       this.messages=data.messages},
         error => console.log(error),
-        () => console.log("Enregistrement status:"+this.status+" de message: "+this.messages));
+        () => console.log(`Enregistrement status: ${this.status} de message: ${this.messages}`));
     }else {
       this.personneService.modifier(personne).subscribe(
-        (data) => {this.personne = data.body
+        (data) => {this.personne = data.body;
         this.status=data.status;
         this.messages=data.messages},
         error => console.log(error),
-        () => console.log("La personne " +personne.id + " a été bien modifier avec le status "
-          +this.status+" de message: "+this.messages)
+        () => console.log(`La personne ${personne.id} a été bien  modifier avec 
+        le status ${this.status} 
+        de message: ${this.messages}`)
       )
     }
 
-    this.displayDialog = false;
     this.getAllsPers();
+    this.displayDialog = false;
+
   }
 
   delete() {
@@ -75,7 +78,7 @@ export class PersonneComponent implements OnInit {
       this.personneService.delete(idPe).subscribe(
         (data) => this.suppPersonne = data.body,
         error => console.log(error),
-        () => console.log("Personne :" + idPe + "a été bien supprimé"));
+        () => console.log(`Personne: ${idPe} a été bien supprimé`));
 
     }else {
       this.displayDialog = false;
@@ -117,5 +120,6 @@ export class PersonneComponent implements OnInit {
     }
     return newPers;
   }
+
 
 }
