@@ -13,7 +13,7 @@ import {Adresse} from "../model/adresse";
 export class PersonneComponent implements OnInit {
   title = 'LES INVITES AUTORISEES!';
   dataPersonnes: Array<Personne>;
-  status:number;
+  status:number=0;
   messages:string[];
   displayDialog: boolean;
   // displayDialog2: boolean;
@@ -52,14 +52,20 @@ export class PersonneComponent implements OnInit {
       this.personneService.ajouter(personne).subscribe(
         (data) => {this.personne = data.body;
       this.status=data.status;
-      this.messages=data.messages},
+      this.messages=data.messages;
+          this.dataPersonnes.push(this.personne);
+        return this.personne},
         error => console.log(error),
-        () => console.log(`Enregistrement status: ${this.status} de message: ${this.messages}`));
+        () => console.log(`Enregistrement de ${this.personne.id} status: ${this.status} de message: ${this.messages}`));
+
     }else {
+      let index=this.dataPersonnes.indexOf(personne);
       this.personneService.modifier(personne).subscribe(
         (data) => {this.personne = data.body;
         this.status=data.status;
-        this.messages=data.messages},
+        this.messages=data.messages;
+        this.dataPersonnes[index]=this.personne;
+        return this.personne},
         error => console.log(error),
         () => console.log(`La personne ${personne.id} a été bien  modifier avec 
         le status ${this.status} 
@@ -67,7 +73,7 @@ export class PersonneComponent implements OnInit {
       )
     }
 
-    this.getAllsPers();
+    //this.getAllsPers();
     this.displayDialog = false;
 
   }
@@ -75,8 +81,11 @@ export class PersonneComponent implements OnInit {
   delete() {
     if (!this.newPersonne){
       let idPe: number = this.selectedPersonne.id;
+      let index=this.dataPersonnes.indexOf(this.selectedPersonne);
       this.personneService.delete(idPe).subscribe(
-        (data) => this.suppPersonne = data.body,
+        (data) => {this.suppPersonne = data.body;
+        this.dataPersonnes.splice(index,1);
+        return},
         error => console.log(error),
         () => console.log(`Personne: ${idPe} a été bien supprimé`));
 
@@ -85,7 +94,7 @@ export class PersonneComponent implements OnInit {
       return;
   }
 
-    this.getAllsPers();
+    //this.getAllsPers();
     this.displayDialog = false;
   }
 

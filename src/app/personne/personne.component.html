@@ -14,8 +14,15 @@
   </div>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+
+
       <div class="container-fluid">
-        <div class="alert-danger" *ngIf="status!=0 || al==false"><h2> {{messages}} {{messages2}}</h2></div>
+        <div *ngIf="status!=0">
+          <alert type="danger" dismissOnTimeout="5000" dismissible="true">
+             <h4><strong>Warning!</strong> {{messages}} {{messages2}}</h4>
+          </alert>
+        </div>
+        <div class="alert-danger" *ngIf="status!=0"><h2> hello: {{messages}} {{messages2}}</h2></div>
         <p-dataTable [value]="dataPersonnes" selectionMode="single" [(selection)]="selectedPersonne"
                      (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="5" [pageLinks]="3"
                      [rowsPerPageOptions]="[5,10,15]" [responsive]="true"
