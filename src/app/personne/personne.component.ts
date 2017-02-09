@@ -12,7 +12,7 @@ import {Adresse} from "../model/adresse";
 })
 export class PersonneComponent implements OnInit {
   title = 'LES INVITES AUTORISEES!';
-  dataPersonnes: Array<Personne>;
+  dataPersonnes: Array<Personne>=[];
   status:number=0;
   messages:string[];
   displayDialog: boolean;
@@ -73,9 +73,9 @@ export class PersonneComponent implements OnInit {
       )
     }
 
-    //this.getAllsPers();
-    this.displayDialog = false;
-
+    Personne==null;
+    this.getAllsPers();
+    this.displayDialog = false
   }
 
   delete() {
